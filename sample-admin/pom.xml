@@ -18,17 +18,62 @@
 		<dependency>
 			<groupId>net.mahesh.sample</groupId>
 			<artifactId>sample-contract</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>net.mahesh.sample</groupId>
 			<artifactId>sample-config</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>net.mahesh.sample</groupId>
 			<artifactId>sample-provider</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>net.mahesh.sample</groupId>
+			<artifactId>sample-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+  </dependencies>
+  
+  <build>
+		<finalName>sample</finalName>
+		<plugins>	
+
+			<plugin>
+				<groupId>org.apache.openejb.maven</groupId>
+				<artifactId>tomee-maven-plugin</artifactId>
+				<version>${tomee.version}</version>
+				<configuration>
+					<appDir>${project.build.directory}</appDir>
+					<tomeeVersion>${tomee.version}</tomeeVersion>
+					<tomeeClassifier>plus</tomeeClassifier>
+					<config>${project.basedir}/../sample-config/src/main/tomcat/conf</config>
+					<debug>false</debug>
+					<debugPort>5005</debugPort>
+					<synchronization>
+						<binariesDir>${project.build.directory}/classes</binariesDir>
+						<targetBinariesDir>${project.build.directory}/apache-tomee/webapps/${project.build.finalName}/WEB-INF/classes</targetBinariesDir>
+						<!-- <resourceDir>${project.basedir}/src/main/webapp</resourceDir> -->
+						<targetResourcesDir>${project.build.directory}/apache-tomee/webapps/${project.build.finalName}</targetResourcesDir>
+						<updateInterval>10</updateInterval>
+						<extensions>
+							<extension>.class</extension>
+						</extensions>
+					</synchronization>
+					<libs>
+						<lib>${database.groupId}:${database.artifactId}:${database.version}</lib>
+						<lib>log4j:log4j:1.2.16</lib>
+						<lib>dom4j:dom4j:1.6.1</lib>
+						<lib>org.hibernate.common:hibernate-commons-annotations:4.0.1.Final</lib>
+						<lib>org.hibernate:hibernate-core:4.1.8.Final</lib>
+						<lib>org.hibernate:hibernate-entitymanager:4.1.8.Final</lib>
+						<lib>org.hibernate:hibernate-validator:4.3.0.Final</lib>
+						<lib>org.jboss.logging:jboss-logging:3.1.0.GA</lib>
+					</libs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

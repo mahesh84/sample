@@ -6,15 +6,17 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>sample-contract</module>		
+		<module>sample-contract</module>
 		<module>sample-config</module>
 		<module>sample-admin</module>
 		<module>sample-provider</module>
+		<module>sample-core</module>
 	</modules>
 	<properties>
 		<mysql.version>5.1.6</mysql.version>
 		<tomee.version>1.6.0.2</tomee.version>
-		<aspectjweaver.version>1.7.3</aspectjweaver.version>		
+		<aspectjweaver.version>1.7.3</aspectjweaver.version>
+		<openejb-core-hibernate.version>4.6.0.2</openejb-core-hibernate.version>
 		<!-- <aspectj.javaagent.location></aspectj.javaagent.location> -->
 	</properties>
 	<dependencyManagement>
@@ -49,7 +51,11 @@
 				<artifactId>openejb-client</artifactId>
 				<version>4.7.2</version>
 			</dependency>
-
+			<dependency>
+				<groupId>org.apache.openejb</groupId>
+				<artifactId>openejb-core-hibernate</artifactId>
+				<version>${openejb-core-hibernate.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<profiles>
@@ -82,41 +88,7 @@
 					<webXml>${basedir}/src/main/resources/WEB-INF/web.xml</webXml>
 				</configuration>
 				<version>2.2</version>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.apache.openejb.maven</groupId>
-				<artifactId>tomee-maven-plugin</artifactId>
-				<version>${tomee.version}</version>
-				<configuration>
-					<appDir>${project.build.directory}</appDir>
-					<tomeeVersion>${tomee.version}</tomeeVersion>
-					<tomeeClassifier>plus</tomeeClassifier>
-					<config>${project.basedir}/src/main/tomcat/conf</config>
-					<debug>false</debug>
-					<debugPort>5005</debugPort>
-					<synchronization>
-						<binariesDir>${project.build.directory}/classes</binariesDir>
-						<targetBinariesDir>${project.build.directory}/apache-tomee/webapps/${project.build.finalName}/WEB-INF/classes</targetBinariesDir>
-						<!-- <resourceDir>${project.basedir}/src/main/webapp</resourceDir> -->
-						<targetResourcesDir>${project.build.directory}/apache-tomee/webapps/${project.build.finalName}</targetResourcesDir>
-						<updateInterval>10</updateInterval>
-						<extensions>
-							<extension>.class</extension>
-						</extensions>
-					</synchronization>
-					<libs>
-						<lib>${database.groupId}:${database.artifactId}:${database.version}</lib>
-						<lib>log4j:log4j:1.2.16</lib>
-						<lib>dom4j:dom4j:1.6.1</lib>
-						<lib>org.hibernate.common:hibernate-commons-annotations:4.0.1.Final</lib>
-						<lib>org.hibernate:hibernate-core:4.1.8.Final</lib>
-						<lib>org.hibernate:hibernate-entitymanager:4.1.8.Final</lib>
-						<lib>org.hibernate:hibernate-validator:4.3.0.Final</lib>
-						<lib>org.jboss.logging:jboss-logging:3.1.0.GA</lib>
-					</libs>
-				</configuration>
-			</plugin>
+			</plugin>			
 		</plugins>
 	</build>
 

@@ -34,11 +34,11 @@
 								<filter>${basedir}/src/main/filters/filter-${env}.properties
 								</filter>
 							</filters>
-							<outputDirectory>${project.basedir}/../src/main/tomcat/conf</outputDirectory>
+							<outputDirectory>${project.basedir}/src/main/tomcat/conf</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>			
 		</plugins>
 	</build>
 </project>

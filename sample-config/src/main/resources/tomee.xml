@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+	<Resource id="jdbc/net.mahesh.fbp.DB" type="DataSource">
+		JdbcDriver ${database.driver}
+		JdbcUrl ${database.url}
+		UserName root
+		Password 
+		JtaManaged true
+		InitialSize 50
+		MaxActive 100
+		MaxIdle 3
+	</Resource>
+</tomee>

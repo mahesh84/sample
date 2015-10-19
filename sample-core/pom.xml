@@ -6,7 +6,7 @@
 		<artifactId>sample</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>sample-contract</artifactId>
+	<artifactId>sample-core</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
@@ -14,5 +14,12 @@
 			<version>6.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.openejb</groupId>
+			<artifactId>openejb-core-hibernate</artifactId>
+			<version>${openejb-core-hibernate.version}</version>
+			<type>pom</type>
+		</dependency>
 	</dependencies>
+
 </project>

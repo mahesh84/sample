@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+	<Resource id="jdbc/net.mahesh.fbp.DB" type="DataSource">
+		JdbcDriver com.mysql.jdbc.Driver
+		JdbcUrl jdbc:mysql://localhost:3306/TEST
+		UserName root
+		Password 
+		JtaManaged true
+		InitialSize 50
+		MaxActive 100
+		MaxIdle 3
+	</Resource>
+</tomee>
