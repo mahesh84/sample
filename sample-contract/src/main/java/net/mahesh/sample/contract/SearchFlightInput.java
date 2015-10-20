@@ -2,7 +2,7 @@ package net.mahesh.sample.contract;
 import java.util.Date;
 
 
-public class SearchFlightInput {
+public class SearchFlightInput extends Input {
 	String destination;
 	String origin;
 	String numberOfPassengers;

@@ -1,29 +1,14 @@
 package net.mahesh.sample.contract;
 
+import java.util.Date;
+
 public class FlightDetails {
-	String flightId;
-	String origin;
-	String destination;
-	String flightDuration;
-	String departureTime;
-	int avaialableSeats;
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "FlightDetails ["
-				+ (flightId != null ? "flightId=" + flightId + ", " : "")
-				+ (origin != null ? "origin=" + origin + ", " : "")
-				+ (destination != null ? "destination=" + destination + ", "
-						: "")
-				+ (flightDuration != null ? "flightDuration=" + flightDuration
-						+ ", " : "")
-				+ (departureTime != null ? "departureTime=" + departureTime
-						+ ", " : "") + "avaialableSeats=" + avaialableSeats
-				+ ", pricePerSeat=" + pricePerSeat + ", totalBookingPrice="
-				+ totalBookingPrice + "]";
-	}
+	private String flightId;
+	private String origin;
+	private String destination;
+	private String flightDuration;
+	private Date departureTime;
+	private int avaialableSeats;	
 	long pricePerSeat;
 	long totalBookingPrice;
 	/**
@@ -77,13 +62,13 @@ public class FlightDetails {
 	/**
 	 * @return the departureTime
 	 */
-	public String getDepartureTime() {
+	public Date getDepartureTime() {
 		return departureTime;
 	}
 	/**
 	 * @param departureTime the departureTime to set
 	 */
-	public void setDepartureTime(String departureTime) {
+	public void setDepartureTime(Date departureTime) {
 		this.departureTime = departureTime;
 	}
 	/**
@@ -121,6 +106,24 @@ public class FlightDetails {
 	 */
 	public void setTotalBookingPrice(long totalBookingPrice) {
 		this.totalBookingPrice = totalBookingPrice;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "FlightDetails ["
+				+ (flightId != null ? "flightId=" + flightId + ", " : "")
+				+ (origin != null ? "origin=" + origin + ", " : "")
+				+ (destination != null ? "destination=" + destination + ", "
+						: "")
+				+ (flightDuration != null ? "flightDuration=" + flightDuration
+						+ ", " : "")
+				+ (departureTime != null ? "departureTime=" + departureTime
+						+ ", " : "") + "avaialableSeats=" + avaialableSeats
+				+ ", pricePerSeat=" + pricePerSeat + ", totalBookingPrice="
+				+ totalBookingPrice + "]";
 	}
 
 }

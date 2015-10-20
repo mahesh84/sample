@@ -25,6 +25,11 @@
 			<artifactId>sample-contract</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>net.mahesh.sample</groupId>
+			<artifactId>sample-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 	
 	<!-- <build>

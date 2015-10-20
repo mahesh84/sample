@@ -2,7 +2,7 @@ package net.mahesh.sample.contract;
 
 import java.util.List;
 
-public class BookFlightInput {
+public class BookFlightInput extends Input {
 	List<PassengerDetails> persengerDetails;
 	int totalNumberOfPassengers;
 	FlightDetails flightDetails;

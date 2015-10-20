@@ -6,8 +6,10 @@
 		UserName root
 		Password 
 		JtaManaged true
-		InitialSize 50
-		MaxActive 100
-		MaxIdle 3
+		InitialSize 3
+		MaxActive 10
+		TestOnBorrow true
+		PoolPreparedStatements true
+		MaxOpenPreparedStatements 128
 	</Resource>
 </tomee>
