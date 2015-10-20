@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
+import javax.inject.Inject;
 import javax.jws.WebService;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -20,6 +21,7 @@ import net.mahesh.sample.contract.SearchFlightInput;
 import net.mahesh.sample.contract.SearchFlightOutput;
 import net.mahesh.sample.entities.BookingDetails;
 import net.mahesh.sample.provider.mapper.ProviderMapper;
+import net.mahesh.sample.transaction.TransactionManager;
 import net.mahesh.sample.transaction.impl.TransactionManagerImpl;
 
 @Stateless(name ="net.mahesh.sample.contract.FlightBookingService")
@@ -28,8 +30,9 @@ import net.mahesh.sample.transaction.impl.TransactionManagerImpl;
 @TransactionAttribute(javax.ejb.TransactionAttributeType.SUPPORTS)
 public class FlightBookingServiceImpl implements FlightBookingService {
 	private static Validator validator;
+	
 	@EJB
-	private TransactionManagerImpl trasmactionManager;
+	private TransactionManager trasmactionManager;
 
 	public SearchFlightOutput searchFlights(SearchFlightInput input) {
 		validate(input);	

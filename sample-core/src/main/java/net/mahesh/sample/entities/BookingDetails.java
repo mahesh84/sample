@@ -18,7 +18,7 @@ public class BookingDetails {
 	@Id
 	@Column(name="ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	private int id;
 	@Column(name="BOOKING_ID")
 	private String bookingId;
 	@Column(name="FLIGHT_ID")
@@ -33,13 +33,13 @@ public class BookingDetails {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	/**
@@ -120,7 +120,7 @@ public class BookingDetails {
 	@Override
 	public String toString() {
 		return "BookingDetails ["
-				+ (id != null ? "id=" + id + ", " : "")
+				+ ( "id=" + id + ", ")
 				+ (bookingId != null ? "bookingId=" + bookingId + ", " : "")
 				+ (flightId != null ? "flightId=" + flightId + ", " : "")
 				+ (passengerDetails != null ? "passengerDetails="
