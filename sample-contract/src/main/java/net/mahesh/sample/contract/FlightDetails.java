@@ -2,13 +2,17 @@ package net.mahesh.sample.contract;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 public class FlightDetails {
+	@NotNull(message="Mandatory Input Field")
 	private String flightId;
+	@NotNull(message="Mandatory Input Field")
 	private String origin;
 	private String destination;
 	private String flightDuration;
 	private Date departureTime;
-	private int avaialableSeats;	
+	private int avaialableSeats;
 	long pricePerSeat;
 	long totalBookingPrice;
 	/**

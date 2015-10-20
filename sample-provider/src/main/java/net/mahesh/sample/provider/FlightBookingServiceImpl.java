@@ -1,5 +1,7 @@
 package net.mahesh.sample.provider;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.ejb.EJB;
@@ -19,6 +21,7 @@ import net.mahesh.sample.contract.FlightBookingService;
 import net.mahesh.sample.contract.Input;
 import net.mahesh.sample.contract.SearchFlightInput;
 import net.mahesh.sample.contract.SearchFlightOutput;
+import net.mahesh.sample.contract.common.Constraint;
 import net.mahesh.sample.entities.BookingDetails;
 import net.mahesh.sample.provider.mapper.ProviderMapper;
 import net.mahesh.sample.transaction.TransactionManager;
@@ -39,17 +42,35 @@ public class FlightBookingServiceImpl implements FlightBookingService {
 		return null;
 	}
 
-	private <input> void validate(Input input) {
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-	      validator = factory.getValidator();
-	      Set<ConstraintViolation<Input>> violations = validator.validate(input, null);
-		
+	private  List<Constraint> validate(Input input) {	      
+	      ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+	        Validator validator = factory.getValidator();
+	       
+	        Set<ConstraintViolation<Input>> violations = validator.validate(input);
+	        if(null!=violations){
+	        	List<Constraint> constraintList = new ArrayList<Constraint>();
+	        	for(ConstraintViolation<Input> cv : violations){	        		
+	        		constraintList.add(new Constraint(cv.getPropertyPath(), cv.getMessage(),cv.getInvalidValue()));
+	        	}
+	        	return constraintList;
+	        }
+	        return null;
 	}
 
 	public BookFlightOutput bookTickets(BookFlightInput input) {
-		//validate(input);
-		BookingDetails details = trasmactionManager.bookFlight(ProviderMapper.mapToCore(input));
 		BookFlightOutput output = new BookFlightOutput();
+		if(null!=input){
+			output.setConstraints(validate(input));
+			if(null!=output.getConstraints()){
+				output.setResponseCode("INVALID INPUT FIELD/FIELDS");
+				return output;
+			}
+		}else{
+			output.setResponseCode("INPUT CAN NOT BE NULL");
+			return output;
+		}
+		BookingDetails details = trasmactionManager.bookFlight(ProviderMapper.mapToCore(input));
+		
 		if(null!=details){		
 		output.setResponseCode("OK");
 		output.setConfirmationStatus("CONFIRMED");

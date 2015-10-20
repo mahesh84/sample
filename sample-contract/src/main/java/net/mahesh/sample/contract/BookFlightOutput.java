@@ -2,22 +2,11 @@ package net.mahesh.sample.contract;
 
 import java.util.List;
 
-public class BookFlightOutput {
-	String responseCode;
-	String confirmationStatus;
-	List<BookingDetails> bookingDetails;
-	/**
-	 * @return the responseCode
-	 */
-	public String getResponseCode() {
-		return responseCode;
-	}
-	/**
-	 * @param responseCode the responseCode to set
-	 */
-	public void setResponseCode(String responseCode) {
-		this.responseCode = responseCode;
-	}
+public class BookFlightOutput extends Output{
+	
+	private String confirmationStatus;
+	private List<BookingDetails> bookingDetails;
+	
 	/**
 	 * @return the confirmationStatus
 	 */
@@ -48,8 +37,6 @@ public class BookFlightOutput {
 	@Override
 	public String toString() {
 		return "BookFlightOutput ["
-				+ (responseCode != null ? "responseCode=" + responseCode + ", "
-						: "")
 				+ (confirmationStatus != null ? "confirmationStatus="
 						+ confirmationStatus + ", " : "")
 				+ (bookingDetails != null ? "bookingDetails=" + bookingDetails

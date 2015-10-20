@@ -1,6 +1,9 @@
 package net.mahesh.sample.contract;
 
+import javax.validation.constraints.NotNull;
+
 public class PassengerDetails {
+	@NotNull
 	String firstName;
 	String lastName;
 	int age;
