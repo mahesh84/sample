@@ -4,12 +4,12 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.transaction.manager_lookup_class">org.apache.openeje.hibernate.TransactionManagerLoopup</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/TEST</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password"></property>
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.dialect">${hibernate.dialect}</property>
+		<property name="hibernate.connection.driver_class">{hibernate.connection.driver_class}</property>
+		<property name="hibernate.connection.url">{hibernate.connection.url}</property>
+		<property name="hibernate.connection.username">${database.username}</property>
+		<property name="hibernate.connection.password">${database.password}</property>
+		<property name="hibernate.hbm2ddl.auto">validate</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">false</property>
 	</session-factory>

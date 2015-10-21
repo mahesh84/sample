@@ -50,7 +50,7 @@
 					<tomeeVersion>${tomee.version}</tomeeVersion>
 					<tomeeClassifier>plus</tomeeClassifier>
 					<config>${project.basedir}/../sample-config/src/main/tomcat/conf</config>
-					<debug>false</debug>
+					<debug>true</debug>
 					<debugPort>5005</debugPort>
 					<synchronization>
 						<binariesDir>${project.build.directory}/classes</binariesDir>

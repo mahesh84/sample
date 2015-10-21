@@ -15,11 +15,21 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.ninja-squad</groupId>
+			<artifactId>DbSetup</artifactId>
+			<version>${dbsetup.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.openejb</groupId>
 			<artifactId>openejb-core-hibernate</artifactId>
 			<version>${openejb-core-hibernate.version}</version>
 			<type>pom</type>
 		</dependency>
 	</dependencies>
-
+	<build>
+		<filters>
+			<filter>${basedir}/../sample-config/src/main/filters/filter-${env}.properties
+		</filter>
+		</filters>
+	</build>	
 </project>

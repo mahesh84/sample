@@ -32,7 +32,8 @@ import net.mahesh.sample.transaction.impl.TransactionManagerImpl;
 @WebService(targetNamespace="mahesh:sample:contract")
 @TransactionAttribute(javax.ejb.TransactionAttributeType.SUPPORTS)
 public class FlightBookingServiceImpl implements FlightBookingService {
-	private static Validator validator;
+	@Inject
+	private static Validator validator;	
 	
 	@EJB
 	private TransactionManager trasmactionManager;
@@ -43,11 +44,11 @@ public class FlightBookingServiceImpl implements FlightBookingService {
 	}
 
 	private  List<Constraint> validate(Input input) {	      
-	      ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-	        Validator validator = factory.getValidator();
+	      /*ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+	        Validator validator = factory.getValidator();*/
 	       
 	        Set<ConstraintViolation<Input>> violations = validator.validate(input);
-	        if(null!=violations){
+	        if(null!=violations && !violations.isEmpty() ){
 	        	List<Constraint> constraintList = new ArrayList<Constraint>();
 	        	for(ConstraintViolation<Input> cv : violations){	        		
 	        		constraintList.add(new Constraint(cv.getPropertyPath(), cv.getMessage(),cv.getInvalidValue()));

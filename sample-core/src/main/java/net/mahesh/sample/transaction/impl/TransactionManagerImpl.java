@@ -14,6 +14,7 @@ public class TransactionManagerImpl implements TransactionManager {
 	@PersistenceContext(name="fbp")
 	private javax.persistence.EntityManager em;
 
+
 	public BookingDetails bookFlight(BookingDetails bookingDetails) {
 		em.persist(bookingDetails);
 		return bookingDetails;

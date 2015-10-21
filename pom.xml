@@ -18,6 +18,8 @@
 		<aspectjweaver.version>1.7.3</aspectjweaver.version>
 		<openejb-core-hibernate.version>4.6.0.2</openejb-core-hibernate.version>
 		<!-- <aspectj.javaagent.location></aspectj.javaagent.location> -->
+		<dbsetup.version>1.6.0</dbsetup.version>
+		<junit.version>4.10</junit.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -52,6 +54,11 @@
 				<version>4.7.2</version>
 			</dependency>
 			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.apache.openejb</groupId>
 				<artifactId>openejb-core-hibernate</artifactId>
 				<version>${openejb-core-hibernate.version}</version>
@@ -79,7 +86,20 @@
 			</dependencies>
 		</profile>
 	</profiles>
-	<build>
+
+	<build>		
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>			
+		</resources>
+		<testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
 		<finalName>sample</finalName>
 		<plugins>
 			<plugin>
@@ -88,7 +108,7 @@
 					<webXml>${basedir}/src/main/resources/WEB-INF/web.xml</webXml>
 				</configuration>
 				<version>2.2</version>
-			</plugin>			
+			</plugin>
 		</plugins>
 	</build>
 

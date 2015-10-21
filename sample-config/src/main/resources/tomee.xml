@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tomee>
-	<Resource id="jdbc/net.mahesh.fbp.DB" type="DataSource">
+	<Resource id="${jdbc.id}" type="DataSource">
 		JdbcDriver ${database.driver}
 		JdbcUrl ${database.url}
-		UserName root
-		Password 
-		JtaManaged true
-		InitialSize 3
-		MaxActive 10
-		TestOnBorrow true
-		PoolPreparedStatements true
-		MaxOpenPreparedStatements 128
+		UserName ${database.username}
+		Password ${database.password}
+		JtaManaged ${database.jtamanaged}
+		InitialSize ${database.initialsize}
+		MaxActive ${database.MaxActive}
+		TestOnBorrow ${database.TestOnBorrow}
+		PoolPreparedStatements ${database.PoolPreparedStatements}
+		MaxOpenPreparedStatements ${database.MaxOpenPreparedStatements}
 	</Resource>
 </tomee>
