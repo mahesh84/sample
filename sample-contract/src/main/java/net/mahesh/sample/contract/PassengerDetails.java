@@ -4,12 +4,14 @@ import javax.validation.constraints.NotNull;
 
 public class PassengerDetails {
 	@NotNull
-	String firstName;
-	String lastName;
-	int age;
-	Address passengerAddressDetails;
-	Contact passengerContactDetails;
-	String mealChoice;
+	private String firstName;
+	private String lastName;
+	private int age;
+	private Address passengerAddressDetails;
+	private Contact passengerContactDetails;
+	private String mealChoice;
+	private String personalId;
+	private String sex;
 	/**
 	 * @return the firstName
 	 */
@@ -82,6 +84,18 @@ public class PassengerDetails {
 	public void setMealChoice(String mealChoice) {
 		this.mealChoice = mealChoice;
 	}
+	public String getPersonalId() {
+		return personalId;
+	}
+	public void setPersonalId(String personalId) {
+		this.personalId = personalId;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -97,6 +111,8 @@ public class PassengerDetails {
 						+ passengerAddressDetails + ", " : "")
 				+ (passengerContactDetails != null ? "passengerContactDetails="
 						+ passengerContactDetails + ", " : "")
-				+ (mealChoice != null ? "mealChoice=" + mealChoice : "") + "]";
+				+ (mealChoice != null ? "mealChoice=" + mealChoice + ", " : "")
+				+ (personalId != null ? "personalId=" + personalId + ", " : "")
+				+ (sex != null ? "sex=" + sex : "") + "]";
 	}	
 }

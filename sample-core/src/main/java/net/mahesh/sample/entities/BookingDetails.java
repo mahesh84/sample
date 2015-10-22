@@ -3,14 +3,17 @@ package net.mahesh.sample.entities;
 
 import java.util.Date;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+@NamedQueries({ @NamedQuery(name = "net.mahesh.sample.entities.BookingDetails.findTotalBooking", query = "SELECT count(*) FROM BookingDetails bookings "
+		+ "WHERE (bookings.journeyDate=:journeyDate and bookings.flightId=:flightId)") })
 
 @Entity
 @Table(name = "FBP_FLIGHT_BOOKINGS")
@@ -25,11 +28,13 @@ public class BookingDetails {
 	private String flightId;
 	private PassengerDetails passengerDetails;
 	@Column(name="REPORTING_TIME")
-	private Date reportingTime;
+	private String reportingTime;
 	@Column(name="CHECKIN_TIME")
-	private Date checkinTime;
+	private String checkinTime;
 	@Column(name="PAYMENT_MODE")
 	private String paymentMode;
+	@Column(name="JOURNEY_DATE")
+	private Date journeyDate;
 	/**
 	 * @return the id
 	 */
@@ -81,25 +86,25 @@ public class BookingDetails {
 	/**
 	 * @return the reportingTime
 	 */
-	public Date getReportingTime() {
+	public String getReportingTime() {
 		return reportingTime;
 	}
 	/**
 	 * @param reportingTime the reportingTime to set
 	 */
-	public void setReportingTime(Date reportingTime) {
+	public void setReportingTime(String reportingTime) {
 		this.reportingTime = reportingTime;
 	}
 	/**
 	 * @return the checkinTime
 	 */
-	public Date getCheckinTime() {
+	public String getCheckinTime() {
 		return checkinTime;
 	}
 	/**
 	 * @param checkinTime the checkinTime to set
 	 */
-	public void setCheckinTime(Date checkinTime) {
+	public void setCheckinTime(String checkinTime) {
 		this.checkinTime = checkinTime;
 	}
 	/**
@@ -114,13 +119,26 @@ public class BookingDetails {
 	public void setPaymentMode(String paymentMode) {
 		this.paymentMode = paymentMode;
 	}
+	/**
+	 * @return the journeyDate
+	 */
+	public Date getJourneyDate() {
+		return journeyDate;
+	}
+	/**
+	 * @param journeyDate the journeyDate to set
+	 */
+	public void setJourneyDate(Date journeyDate) {
+		this.journeyDate = journeyDate;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "BookingDetails ["
-				+ ( "id=" + id + ", ")
+		return "BookingDetails [id="
+				+ id
+				+ ", "
 				+ (bookingId != null ? "bookingId=" + bookingId + ", " : "")
 				+ (flightId != null ? "flightId=" + flightId + ", " : "")
 				+ (passengerDetails != null ? "passengerDetails="
@@ -129,8 +147,31 @@ public class BookingDetails {
 						+ ", " : "")
 				+ (checkinTime != null ? "checkinTime=" + checkinTime + ", "
 						: "")
-				+ (paymentMode != null ? "paymentMode=" + paymentMode : "")
+				+ (paymentMode != null ? "paymentMode=" + paymentMode + ", "
+						: "")
+				+ (journeyDate != null ? "journeyDate=" + journeyDate : "")
 				+ "]";
 	}
+	
+	/*private String convertDepartureTime(int departureTimeConvert) {
+		String timeRepresentation = "";
+		int hours = departureTimeConvert / 60;
+		int min = departureTimeConvert % 60;
+		timeRepresentation = appendZero(hours) +":"+ appendZero(min);
+		if(hours<12){
+			timeRepresentation=timeRepresentation+" AM";
+		}else{
+			timeRepresentation=timeRepresentation+" PM";
+		}
+		return timeRepresentation;
+	}
+
+	private String appendZero(int digit) {
+		if (digit < 10) {
+			return "0" + digit;
+		} else {
+			return ""+digit;
+		}
+	}*/
 
 }

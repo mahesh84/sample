@@ -1,12 +1,20 @@
 package net.mahesh.sample.contract;
 import java.util.Date;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 
 public class SearchFlightInput extends Input {
-	String destination;
-	String origin;
-	String numberOfPassengers;
-	Date dateOfTravel;
+	@NotNull(message="Mandatory Input Field")
+	private String destination;
+	@NotNull(message="Mandatory Input Field")
+	private String origin;	
+	@Min(value=1)
+	private int numberOfPassengers;	
+	@Future(message="Date should be from Future.")
+	private Date dateOfTravel;
 	public String getDestination() {
 		return destination;
 	}
@@ -19,10 +27,10 @@ public class SearchFlightInput extends Input {
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
-	public String getNumberOfPassengers() {
+	public int getNumberOfPassengers() {
 		return numberOfPassengers;
 	}
-	public void setNumberOfPassengers(String numberOfPassengers) {
+	public void setNumberOfPassengers(int numberOfPassengers) {
 		this.numberOfPassengers = numberOfPassengers;
 	}
 	public Date getDateOfTravel() {
@@ -37,8 +45,7 @@ public class SearchFlightInput extends Input {
 				+ (destination != null ? "destination=" + destination + ", "
 						: "")
 				+ (origin != null ? "origin=" + origin + ", " : "")
-				+ (numberOfPassengers != null ? "numberOfPassengers="
-						+ numberOfPassengers + ", " : "")
+				+ ("numberOfPassengers "+ numberOfPassengers )
 				+ (dateOfTravel != null ? "dateOfTravel=" + dateOfTravel : "")
 				+ "]";
 	}

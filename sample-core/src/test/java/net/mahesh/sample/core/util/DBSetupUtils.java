@@ -46,7 +46,8 @@ public class DBSetupUtils {
 
 	public static final Operation insertData_FBP_PLANE_DETAILS = Operations
 			.sequenceOf(
-					Operations.deleteAllFrom("FBP_PLANE_DETAILS"),
+					Operations.deleteAllFrom("FBP_FLIGHT_DETAILS"),
+					Operations.deleteAllFrom("FBP_PLANE_DETAILS"),					
 					Operations.insertInto("FBP_PLANE_DETAILS")
 							.columns("PLANE_ID", "TOTAL_SEAT_CAPACITY")
 							.values("10001", "100").values("10002", "100")
@@ -56,6 +57,7 @@ public class DBSetupUtils {
 							.values("10009", "100").values("10010", "100")
 							.values("10011", "100").values("10012", "100")
 							.values("10013", "100").values("10014", "100")
+							.values("10015", "100").values("10016", "10")
 							.build());
 
 	public static final Operation insertData_FBP_AIRPORTS = Operations
@@ -79,42 +81,41 @@ public class DBSetupUtils {
 					Operations
 							.insertInto("FBP_FLIGHT_DETAILS")
 							.columns("ID", "FLIGHT_ID", "ORIGIN",
-									"DESTINATION", "DEPARTURE_TIME",
+									"DESTINATION", "DEPARTURE_TIME","FLIGHT_DURATION",
 									"FLIGHT_COST_VALUE",
 									"FLIGHT_COST_CURRENCY", "FLIGHT_INFO",
 									"PLANE_ID", "FLIGHT_STATUS")
-							.values("1", "FBP-A-B-1", "A", "B", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("2", "FBP-B-A-1", "B", "A", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("3", "FBP-A-F-1", "A", "F", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("4", "FBP-F-A-1", "F", "A", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("5", "FBP-H-B-1", "H", "B", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("6", "FBP-B-H-1", "B", "H", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("7", "FBP-B-C-1", "B", "C", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("8", "FBP-B-E-1", "B", "E", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("9", "FBP-E-B-1", "E", "B", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("10", "FBP-C-B-1", "C", "B", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("11", "FBP-C-E-1", "C", "E", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("12", "FBP-C-E-2", "C", "E", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("13", "FBP-C-E-3", "C", "E", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("14", "FBP-C-E-4", "C", "E", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("15", "FBP-C-E-5", "C", "E", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("16", "FBP-C-E-6", "C", "E", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("17", "FBP-C-E-7", "C", "E", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("18", "FBP-C-E-8", "C", "E", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("19", "FBP-C-E-9", "C", "E", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("20", "FBP-E-C-1", "E", "C", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("21", "FBP-E-C-2", "E", "C", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("22", "FBP-E-C-3", "E", "C", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("23", "FBP-E-C-4", "E", "C", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("24", "FBP-E-C-5", "E", "C", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("25", "FBP-E-C-6", "E", "C", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("26", "FBP-E-C-7", "E", "C", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("27", "FBP-E-C-8", "E", "C", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("28", "FBP-E-C-9", "E", "C", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("29", "FBP-C-D-1", "C", "D", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("30", "FBP-D-C-1", "D", "C", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("31", "FBP-D-E-1", "D", "E", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.values("32", "FBP-E-D-1", "E", "D", date1,"1000","INR","BOEING-777","10001","AVAILABLE")
-							.build());
-
+							.values("1", "FBP-A-B-1", "A", "B", "07:00 AM","01:58","1000","INR","BOEING-777","10001","AVAILABLE")
+							.values("2", "FBP-B-A-1", "B", "A", "18:00 PM","01:58","1000","INR","BOEING-777","10001","AVAILABLE")
+							.values("3", "FBP-A-F-1", "A", "F", "07:00 AM","01:58","1000","INR","BOEING-777","10002","AVAILABLE")
+							.values("4", "FBP-F-A-1", "F", "A", "18:00 PM","01:58","1000","INR","BOEING-777","10002","AVAILABLE")
+							.values("5", "FBP-H-B-1", "H", "B", "07:00 AM","01:58","1000","INR","BOEING-777","10003","AVAILABLE")
+							.values("6", "FBP-B-H-1", "B", "H", "18:00 PM","01:58","1000","INR","BOEING-777","10003","AVAILABLE")
+							.values("7", "FBP-B-C-1", "B", "C", "08:00 AM","01:58","1000","INR","BOEING-777","10004","AVAILABLE")
+							.values("8", "FBP-B-E-1", "B", "E", "09:00 AM","01:58","1000","INR","BOEING-777","10005","AVAILABLE")
+							.values("9", "FBP-E-B-1", "E", "B", "18:00 PM","01:58","1000","INR","BOEING-777","10005","AVAILABLE")
+							.values("10", "FBP-C-B-1", "C", "B", "18:00 PM","01:58","1000","INR","BOEING-777","10004","AVAILABLE")							
+							.values("11", "FBP-C-E-1", "C", "E", "07:00 AM","01:00","1000","INR","BOEING-777","10006","AVAILABLE")
+							.values("12", "FBP-C-E-2", "C", "E", "07:15 AM","01:00","1000","INR","BOEING-777","10007","AVAILABLE")
+							.values("13", "FBP-C-E-3", "C", "E", "07:30 AM","01:00","1000","INR","BOEING-777","10008","AVAILABLE")
+							.values("14", "FBP-C-E-4", "C", "E", "09:00 AM","01:00","1000","INR","BOEING-777","10009","AVAILABLE")
+							.values("15", "FBP-C-E-5", "C", "E", "09:30 AM","01:00","1000","INR","BOEING-777","10010","AVAILABLE")
+							.values("16", "FBP-C-E-6", "C", "E", "10:00 AM","01:00","1000","INR","BOEING-777","10011","AVAILABLE")
+							.values("17", "FBP-C-E-7", "C", "E", "18:00 PM","01:00","1000","INR","BOEING-777","10012","AVAILABLE")
+							.values("18", "FBP-C-E-8", "C", "E", "18:30 PM","01:00","1000","INR","BOEING-777","10013","AVAILABLE")
+							.values("19", "FBP-C-E-9", "C", "E", "19:00 PM","01:00","1000","INR","BOEING-777","10014","AVAILABLE")							
+							.values("20", "FBP-E-C-1", "E", "C", "08:00 AM","01:00","1000","INR","BOEING-777","10012","AVAILABLE")
+							.values("21", "FBP-E-C-2", "E", "C", "08:30 AM","01:00","1000","INR","BOEING-777","10013","AVAILABLE")
+							.values("22", "FBP-E-C-3", "E", "C", "09:00 AM","01:00","1000","INR","BOEING-777","10014","AVAILABLE")
+							.values("23", "FBP-E-C-4", "E", "C", "10:30 AM","01:00","1000","INR","BOEING-777","10006","AVAILABLE")
+							.values("24", "FBP-E-C-5", "E", "C", "10:45 AM","01:00","1000","INR","BOEING-777","10007","AVAILABLE")
+							.values("25", "FBP-E-C-6", "E", "C", "11:00 AM","01:00","1000","INR","BOEING-777","10008","AVAILABLE")
+							.values("26", "FBP-E-C-7", "E", "C", "18:00 PM","01:00","1000","INR","BOEING-777","10009","AVAILABLE")
+							.values("27", "FBP-E-C-8", "E", "C", "18:30 PM","01:00","1000","INR","BOEING-777","10010","AVAILABLE")
+							.values("28", "FBP-E-C-9", "E", "C", "19:00 PM","01:00","1000","INR","BOEING-777","10011","AVAILABLE")							
+							.values("29", "FBP-C-D-1", "C", "D", "15:30 PM","01:58","1000","INR","BOEING-777","10015","AVAILABLE")
+							.values("30", "FBP-D-C-1", "D", "C", "06:30 AM","01:58","1000","INR","BOEING-777","10015","AVAILABLE")
+							.values("31", "FBP-D-E-1", "D", "E", "07:30 AM","01:58","1000","INR","BOEING-777","10016","AVAILABLE")
+							.values("32", "FBP-E-D-1", "E", "D", "18:30 PM","01:58","1000","INR","BOEING-777","10016","AVAILABLE")
+							.build());	
 }

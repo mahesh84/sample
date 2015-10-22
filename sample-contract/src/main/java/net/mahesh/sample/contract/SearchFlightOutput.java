@@ -2,7 +2,7 @@ package net.mahesh.sample.contract;
 
 import java.util.List;
 
-public class SearchFlightOutput {
+public class SearchFlightOutput extends Output {
 	List<FlightDetails> flights;
 	String responseCode;
 	/* (non-Javadoc)
@@ -18,13 +18,13 @@ public class SearchFlightOutput {
 	/**
 	 * @return the flights
 	 */
-	public List getFlights() {
+	public List<FlightDetails> getFlights() {
 		return flights;
 	}
 	/**
 	 * @param flights the flights to set
 	 */
-	public void setFlights(List flights) {
+	public void setFlights(List<FlightDetails> flights) {
 		this.flights = flights;
 	}
 	/**

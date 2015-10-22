@@ -1,18 +1,22 @@
 package net.mahesh.sample.contract;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 public class BookFlightInput extends Input {
-	@NotNull
+	@NotNull(message="Mandatory Input Field")
 	@Valid
 	private List<PassengerDetails> persengerDetails;
-	@NotNull
-	private int totalNumberOfPassengers;
+	@NotNull(message="Mandatory Input Field")
+	private Integer totalNumberOfPassengers;
 	@Valid
+	@NotNull(message="Mandatory Input Field")
 	private FlightDetails flightDetails;
+	@NotNull(message="Mandatory Input Field")
+	private Date journeyDate;
 	
 	/**
 	 * @return the persengerDetails
@@ -29,13 +33,13 @@ public class BookFlightInput extends Input {
 	/**
 	 * @return the totalNumberOfPassengers
 	 */
-	public int getTotalNumberOfPassengers() {
+	public Integer getTotalNumberOfPassengers() {
 		return totalNumberOfPassengers;
 	}
 	/**
 	 * @param totalNumberOfPassengers the totalNumberOfPassengers to set
 	 */
-	public void setTotalNumberOfPassengers(int totalNumberOfPassengers) {
+	public void setTotalNumberOfPassengers(Integer totalNumberOfPassengers) {
 		this.totalNumberOfPassengers = totalNumberOfPassengers;
 	}
 	/**
@@ -50,6 +54,18 @@ public class BookFlightInput extends Input {
 	public void setFlightDetails(FlightDetails flightDetails) {
 		this.flightDetails = flightDetails;
 	}
+	/**
+	 * @return the journeyDate
+	 */
+	public Date getJourneyDate() {
+		return journeyDate;
+	}
+	/**
+	 * @param journeyDate the journeyDate to set
+	 */
+	public void setJourneyDate(Date journeyDate) {
+		this.journeyDate = journeyDate;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -58,10 +74,13 @@ public class BookFlightInput extends Input {
 		return "BookFlightInput ["
 				+ (persengerDetails != null ? "persengerDetails="
 						+ persengerDetails + ", " : "")
-				+ "totalNumberOfPassengers="
-				+ totalNumberOfPassengers
-				+ ", "
+				+ (totalNumberOfPassengers != null ? "totalNumberOfPassengers="
+						+ totalNumberOfPassengers + ", " : "")
 				+ (flightDetails != null ? "flightDetails=" + flightDetails
-						: "") + "]";
+						+ ", " : "")
+				+ (journeyDate != null ? "journeyDate=" + journeyDate : "")
+				+ "]";
 	}
+	
+	
 }

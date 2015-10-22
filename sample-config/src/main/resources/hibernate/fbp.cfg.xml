@@ -9,7 +9,7 @@
 		<property name="hibernate.connection.url">{hibernate.connection.url}</property>
 		<property name="hibernate.connection.username">${database.username}</property>
 		<property name="hibernate.connection.password">${database.password}</property>
-		<property name="hibernate.hbm2ddl.auto">validate</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">false</property>
 	</session-factory>

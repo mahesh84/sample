@@ -6,6 +6,22 @@ public class BookFlightOutput extends Output{
 	
 	private String confirmationStatus;
 	private List<BookingDetails> bookingDetails;
+	private int numberOfSeatsConfirmed;
+	
+	/**
+	 * @return the numberOfSeatsCOnfirmed
+	 */
+	public int getNumberOfSeatsConfirmed() {
+		return numberOfSeatsConfirmed;
+	}
+
+	/**
+	 * @param numberOfSeatsCOnfirmed
+	 *            the numberOfSeatsCOnfirmed to set
+	 */
+	public void setNumberOfSeatsConfirmed(int numberOfSeatsConfirmed) {
+		this.numberOfSeatsConfirmed = numberOfSeatsConfirmed;
+	}
 	
 	/**
 	 * @return the confirmationStatus
@@ -40,7 +56,8 @@ public class BookFlightOutput extends Output{
 				+ (confirmationStatus != null ? "confirmationStatus="
 						+ confirmationStatus + ", " : "")
 				+ (bookingDetails != null ? "bookingDetails=" + bookingDetails
-						: "") + "]";
+						+ ", " : "") + "numberOfSeatsConfirmed="
+				+ numberOfSeatsConfirmed + "]";
 	}
 
 }

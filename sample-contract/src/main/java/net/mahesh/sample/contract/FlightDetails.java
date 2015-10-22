@@ -1,7 +1,5 @@
 package net.mahesh.sample.contract;
 
-import java.util.Date;
-
 import javax.validation.constraints.NotNull;
 
 public class FlightDetails {
@@ -9,12 +7,27 @@ public class FlightDetails {
 	private String flightId;
 	@NotNull(message="Mandatory Input Field")
 	private String origin;
+	@NotNull(message="Mandatory Input Field")
 	private String destination;
 	private String flightDuration;
-	private Date departureTime;
-	private int avaialableSeats;
-	long pricePerSeat;
-	long totalBookingPrice;
+	private String departureTime;
+	private long avaialableSeats;
+	private double pricePerSeat;
+	private long totalBookingPrice;
+	private String flightStatus;
+	
+	/**
+	 * @return the flightStatus
+	 */
+	public String getFlightStatus() {
+		return flightStatus;
+	}
+	/**
+	 * @param flightStatus the flightStatus to set
+	 */
+	public void setFlightStatus(String flightStatus) {
+		this.flightStatus = flightStatus;
+	}
 	/**
 	 * @return the flightId
 	 */
@@ -66,37 +79,37 @@ public class FlightDetails {
 	/**
 	 * @return the departureTime
 	 */
-	public Date getDepartureTime() {
+	public String getDepartureTime() {
 		return departureTime;
 	}
 	/**
 	 * @param departureTime the departureTime to set
 	 */
-	public void setDepartureTime(Date departureTime) {
+	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
 	/**
 	 * @return the avaialableSeats
 	 */
-	public int getAvaialableSeats() {
+	public long getAvaialableSeats() {
 		return avaialableSeats;
 	}
 	/**
 	 * @param avaialableSeats the avaialableSeats to set
 	 */
-	public void setAvaialableSeats(int avaialableSeats) {
+	public void setAvaialableSeats(long avaialableSeats) {
 		this.avaialableSeats = avaialableSeats;
 	}
 	/**
 	 * @return the pricePerSeat
 	 */
-	public long getPricePerSeat() {
+	public double getPricePerSeat() {
 		return pricePerSeat;
 	}
 	/**
 	 * @param pricePerSeat the pricePerSeat to set
 	 */
-	public void setPricePerSeat(long pricePerSeat) {
+	public void setPricePerSeat(double pricePerSeat) {
 		this.pricePerSeat = pricePerSeat;
 	}
 	/**
@@ -127,7 +140,7 @@ public class FlightDetails {
 				+ (departureTime != null ? "departureTime=" + departureTime
 						+ ", " : "") + "avaialableSeats=" + avaialableSeats
 				+ ", pricePerSeat=" + pricePerSeat + ", totalBookingPrice="
-				+ totalBookingPrice + "]";
+				+ totalBookingPrice + ", flightStatus=" + flightStatus + "]";
 	}
 
 }

@@ -6,7 +6,8 @@ import net.mahesh.sample.contract.common.Constraint;
 
 public class Output {
 	private String responseCode;
-	private List<Constraint> constraints;	
+	private List<Constraint> constraints;
+	private String informationMessage;
 	/**
 	 * @return the responseCode
 	 */
@@ -32,6 +33,12 @@ public class Output {
 		this.constraints = constraints;
 	}
 	
+	public String getInformationMessage() {
+		return informationMessage;
+	}
+	public void setInformationMessage(String informationMessage) {
+		this.informationMessage = informationMessage;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -40,8 +47,10 @@ public class Output {
 		return "Output ["
 				+ (responseCode != null ? "responseCode=" + responseCode + ", "
 						: "")
-				+ (constraints != null ? "constraints=" + constraints : "")
-				+ "]";
+				+ (constraints != null ? "constraints=" + constraints + ", "
+						: "")
+				+ (informationMessage != null ? "informationMessage="
+						+ informationMessage : "") + "]";
 	}
 
 }
