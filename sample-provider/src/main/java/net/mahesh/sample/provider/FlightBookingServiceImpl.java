@@ -35,24 +35,30 @@ import net.mahesh.sample.transaction.TransactionManager;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class FlightBookingServiceImpl implements FlightBookingService {
 	@Inject
-	private static Validator validator;
+	private Validator validator;
 
 	@EJB
 	private TransactionManager trasnctionManager;
 
+	/**
+	 * {@inheritDoc}
+	 * @param SearchFlightInput
+	 * @return SearchFlightOutput
+	 */
 	public SearchFlightOutput searchFlights(SearchFlightInput input) {
 		SearchFlightOutput output = new SearchFlightOutput();
 		
 		processValidation(input,output);
 		if("NOK".equals(output.getResponseCode())){
 			return output;
-		}	
+		}
 		
 		List<FlightDetails> flights = trasnctionManager
 				.searchFlights(ProviderMapper.mapToFlightDetailsEntity(input),input.getDateOfTravel());
 
 		if (null == flights || flights.size() == 0) {
-			output.setResponseCode("THERE IS NO SERVICE BETWEEN TWO CITIES");
+			output.setResponseCode("NOK");
+			output.setInformationMessage("THERE IS NO SERVICE BETWEEN TWO CITIES");
 		} else {
 			output.setResponseCode("OK");
 			List<net.mahesh.sample.contract.FlightDetails> contractFlightList = ProviderMapper
@@ -62,6 +68,11 @@ public class FlightBookingServiceImpl implements FlightBookingService {
 		return output;
 	}
 
+	/**
+	 * {@inheritDoc}	
+	 * @param SearchFlightInput
+	 * @return SearchFlightOutput
+	 */
 	public BookFlightOutput bookTickets(BookFlightInput input) {
 		BookFlightOutput output = new BookFlightOutput();
 		
@@ -86,8 +97,11 @@ public class FlightBookingServiceImpl implements FlightBookingService {
 		return output;
 	}
 	
-	private Output processValidation(Input input,
-			Output output) {
+	/** MTHOD FOR COMMON VALIDATION.
+	 * @param input
+	 * @return Output
+	 */
+	private Output processValidation(Input input, Output output) {
 		if (null != input) {
 			output.setConstraints(validate(input));
 			if (null != output.getConstraints()) {
@@ -105,6 +119,10 @@ public class FlightBookingServiceImpl implements FlightBookingService {
 		return output;		
 	}
 
+	/**METHOD FOR VALIDATING INPUT.
+	 * @param input
+	 * @return List<Constraint>
+	 */
 	private List<Constraint> validate(Input input) {
 		Set<ConstraintViolation<Input>> violations = validator.validate(input);
 		if (null != violations && !violations.isEmpty()) {

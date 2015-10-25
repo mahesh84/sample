@@ -7,8 +7,9 @@
 
 	<persistence-unit name="fbp" transaction-type="JTA">
 		<description>My Persistence Unit</description>
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>	
 		<mapping-file>${jdbc.id}</mapping-file>
+		<jta-data-source>fbp</jta-data-source>       
 		<class>net.mahesh.sample.entities.Airports</class>		
 		<class>net.mahesh.sample.entities.BookingDetails</class>
 		<class>net.mahesh.sample.entities.FlightDetails</class>		

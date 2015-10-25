@@ -3,10 +3,10 @@
 "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<property name="hibernate.transaction.manager_lookup_class">org.apache.openeje.hibernate.TransactionManagerLoopup</property>
+		<property name="hibernate.transaction.manager_lookup_class">org.apache.openejb.hibernate.TransactionManagerLoopup</property>
 		<property name="hibernate.dialect">${hibernate.dialect}</property>
-		<property name="hibernate.connection.driver_class">{hibernate.connection.driver_class}</property>
-		<property name="hibernate.connection.url">{hibernate.connection.url}</property>
+		<property name="hibernate.connection.driver_class">${hibernate.connection.driver_class}</property>
+		<property name="hibernate.connection.url">${hibernate.connection.url}</property>
 		<property name="hibernate.connection.username">${database.username}</property>
 		<property name="hibernate.connection.password">${database.password}</property>
 		<property name="hibernate.hbm2ddl.auto">create</property>

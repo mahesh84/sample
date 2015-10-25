@@ -11,6 +11,7 @@
 		<module>sample-admin</module>
 		<module>sample-provider</module>
 		<module>sample-core</module>
+		<module>sample-test</module>
 	</modules>
 	<properties>
 		<mysql.version>5.1.6</mysql.version>
@@ -20,6 +21,8 @@
 		<!-- <aspectj.javaagent.location></aspectj.javaagent.location> -->
 		<dbsetup.version>1.6.0</dbsetup.version>
 		<junit.version>4.10</junit.version>
+		<easymock.version>3.3.1</easymock.version>
+		<powermock.version>1.6.0</powermock.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -54,17 +57,38 @@
 				<version>4.7.2</version>
 			</dependency>
 			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>org.apache.openejb</groupId>
 				<artifactId>openejb-core-hibernate</artifactId>
 				<version>${openejb-core-hibernate.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>${easymock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-easymock</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 	<profiles>
 		<profile>
 			<id>mysql</id>
@@ -87,19 +111,19 @@
 		</profile>
 	</profiles>
 
-	<build>		
+	<build>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
-			</resource>			
+			</resource>
 		</resources>
 		<testResources>
-            <testResource>
-                <directory>src/test/resources</directory>
-                <filtering>true</filtering>
-            </testResource>
-        </testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
 		<finalName>sample</finalName>
 		<plugins>
 			<plugin>

@@ -1,4 +1,5 @@
-package net.mahesh.sample.core.util;
+package net.mahesh.sample.test;
+
 
 import java.io.IOException;
 import java.io.InputStream;
