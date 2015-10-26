@@ -97,6 +97,8 @@ public class IntegrationITCase {
 		BookFlightInput input = new BookFlightInput();
 		input.setFlightDetails(output.getFlights().get(0));
 		input.setJourneyDate(CommonInputData.getSearchFlightInput().getDateOfTravel());
+		
+		
 		input.setPersengerDetails(CommonInputData.getPassengerDetails());
 		input.setTotalNumberOfPassengers(1);
 		BookFlightOutput bookingOutput=flightBookingService.bookTickets(input);
