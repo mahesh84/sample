@@ -1,16 +1,16 @@
 package net.mahesh.sample.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import net.mahesh.sample.contract.BookFlightInput;
+import net.mahesh.sample.contract.BookFlightOutput;
 import net.mahesh.sample.contract.FlightBookingService;
 import net.mahesh.sample.contract.SearchFlightOutput;
 import net.mahesh.sample.provider.CommonInputData;
@@ -51,8 +51,12 @@ public class IntegrationITCase {
 				.createEJBContainer(properties);
 		prepareDB();
 		Context ctx = container.getContext();
+		
+		//FIXME - difference in jndi naming service while individual test run and during build.
+		
 		//uncomment following line For Overall build
 		String jndi = "java:global/sample/sample/net.mahesh.sample.contract.FlightBookingService!net.mahesh.sample.contract.FlightBookingService";
+		
 		// uncomment following line For individual test case execution
 		//String jndi = "java:global/sample/sample-provider/net.mahesh.sample.contract.FlightBookingService!net.mahesh.sample.contract.FlightBookingService";
 	
@@ -85,9 +89,18 @@ public class IntegrationITCase {
 	}
 
 	@Test
-	public void searchFlights_OK() {
+	public void search_Book_Flights_OK() {
 		SearchFlightOutput output = flightBookingService
 				.searchFlights(CommonInputData.getSearchFlightInput());
 		assertEquals("OK", output.getResponseCode());
+		
+		BookFlightInput input = new BookFlightInput();
+		input.setFlightDetails(output.getFlights().get(0));
+		input.setJourneyDate(CommonInputData.getSearchFlightInput().getDateOfTravel());
+		input.setPersengerDetails(CommonInputData.getPassengerDetails());
+		input.setTotalNumberOfPassengers(1);
+		BookFlightOutput bookingOutput=flightBookingService.bookTickets(input);
+		assertEquals("OK", bookingOutput.getResponseCode());
+		//TODO - check all important NOK cases.
 	}
 }

@@ -73,8 +73,11 @@ public class ProviderMapper {
 				.setLastName(contractPassengerDetails.getLastName());
 		corePassengerDetails.setMealsChoice(contractPassengerDetails
 				.getMealChoice());
+		if(null!=contractPassengerDetails
+				.getPassengerContactDetails()){
 		corePassengerDetails.setMobileNumber(contractPassengerDetails
 				.getPassengerContactDetails().getMobileNumber());
+		}
 		corePassengerDetails
 				.setPassengerAddress(prepareCoreAddress(contractPassengerDetails
 						.getPassengerAddressDetails()));

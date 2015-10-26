@@ -1,16 +1,21 @@
 package net.mahesh.sample.provider;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Currency;
 import java.util.Date;
+import java.util.List;
 
+import net.mahesh.sample.contract.Address;
+import net.mahesh.sample.contract.Contact;
+import net.mahesh.sample.contract.PassengerDetails;
 import net.mahesh.sample.contract.SearchFlightInput;
 import net.mahesh.sample.entities.Amount;
 import net.mahesh.sample.entities.FlightDetails;
 import net.mahesh.sample.entities.PlaneDetails;
 
 public class CommonInputData {
-	public static SearchFlightInput getSearchFlightInput(){
+	public static SearchFlightInput getSearchFlightInput() {
 		SearchFlightInput input = new SearchFlightInput();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date()); // Now use today date.
@@ -18,11 +23,11 @@ public class CommonInputData {
 		input.setDateOfTravel(cal.getTime());
 		input.setDestination("E");
 		input.setNumberOfPassengers(1);
-		input.setOrigin("C");		
+		input.setOrigin("C");
 		return input;
 	}
-	
-	public static FlightDetails getCoreFlightDetails(){
+
+	public static FlightDetails getCoreFlightDetails() {
 		FlightDetails details = new FlightDetails();
 		details.setAvailableNoOfSeats(2);
 		details.setCost(getAmount());
@@ -51,4 +56,36 @@ public class CommonInputData {
 		return amount;
 	}
 
+	public static List<PassengerDetails> getPassengerDetails() {
+		
+		PassengerDetails details = new PassengerDetails();
+		details.setFirstName("Mahesh");
+		details.setLastName("angadi");
+		details.setAge(30);
+		details.setMealChoice("veg");
+		details.setSex("Male");
+		details.setPersonalId("abcd");
+		details.setPassengerAddressDetails(getAddress());
+		details.setPassengerContactDetails(getPassengerContactDetails());
+		List<PassengerDetails> list = new ArrayList<PassengerDetails>();
+		list.add(details);
+		return list;
+	}
+
+	private static Contact getPassengerContactDetails() {
+		Contact contact = new  Contact();
+		contact.setMobileNumber("955340909");
+		return contact;
+	}
+
+	public static Address getAddress() {
+		Address address = new Address();
+		address.setCity("pune");
+		address.setCountry("india");
+		address.setFirstLineOfAddress("hinjewaid phase 3");
+		address.setSecondLineOfAddress("Pune");
+		address.setThirdLineOfAddress("MIDC Area");
+		address.setState("Maharastra");
+		return address;
+	}
 }

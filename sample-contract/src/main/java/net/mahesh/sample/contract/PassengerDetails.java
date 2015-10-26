@@ -1,13 +1,15 @@
 package net.mahesh.sample.contract;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 public class PassengerDetails {
-	@NotNull
+	@NotNull(message="Mandatory Field Missing")
 	private String firstName;
 	private String lastName;
 	private int age;
 	private Address passengerAddressDetails;
+	@Valid
 	private Contact passengerContactDetails;
 	private String mealChoice;
 	private String personalId;

@@ -1,9 +1,12 @@
 package net.mahesh.sample.contract;
 
+import javax.validation.constraints.NotNull;
+
 public class Contact {
-String mobileNumber;
-String emailId;
-String landLineNumber;
+@NotNull(message="Mandatory Field Missing")
+private String mobileNumber;
+private String emailId;
+private String landLineNumber;
 /* (non-Javadoc)
  * @see java.lang.Object#toString()
  */
